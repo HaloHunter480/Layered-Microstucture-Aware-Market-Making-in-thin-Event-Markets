@@ -415,8 +415,8 @@ SOFTWARE.
 
 ## 📧 Contact
 
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Email**: your.email@example.com
+- **GitHub**: [@HaloHunter480](https://github.com/HaloHunter480)
+- **Email**: harjot.quant@gmail.com
 
 For academic inquiries or collaboration opportunities, please reach out via email.
 
