@@ -8,12 +8,15 @@ Empirical Probability Surfaces and Toxic Flow Detection in Short-Horizon Binary 
 
 ## 📊 Project Overview
 
-This system trades 5-minute Bitcoin binary options on Polymarket using:
+This project investigates short-horizon probability estimation and microstructure-aware execution in 5-minute binary markets- 
+
 - **Empirical probability surfaces** calibrated from 31 days of historical BTC data
 - **Kelly Criterion** for optimal position sizing
-- **Advanced toxic flow detection** (Hawkes process, VPIN, price jumps)
+- **Toxic flow detection** (Hawkes process, VPIN, price jumps)
 - **Asymmetric market making** with dynamic quote skewing
 - **Multi-exchange data fusion** (Polymarket + Binance)
+
+**The objective** is not to claim production-ready profitability, but to explore the interaction between empirical probability calibration, microstructure signals, and execution constraints under realistic assumptions.
 
 ## 🎓 Academic Documentation
 
@@ -27,12 +30,6 @@ This project includes comprehensive academic documentation suitable for universi
 - Kyle's Lambda for market impact
 - Order flow analysis and asymmetric quoting
 - Full mathematical proofs and academic references
-
-📄 **[MEDALLION_MATH.md](MEDALLION_MATH.md)** - Strategy documentation:
-- Bayesian probability updating
-- Ornstein-Uhlenbeck mean reversion
-- Regime detection (trending vs. ranging)
-- Signal decay modeling
 
 ---
 
