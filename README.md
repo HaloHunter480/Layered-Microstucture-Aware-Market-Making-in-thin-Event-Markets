@@ -1,6 +1,5 @@
-# Empirical-Microstructure-Modeling-in-Binary-Markets
+Emperical Microstuctire in Binary Markets
 
-Empirical Probability Surfaces and Toxic Flow Detection in Short-Horizon Binary Markets
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -8,28 +7,29 @@ Empirical Probability Surfaces and Toxic Flow Detection in Short-Horizon Binary 
 
 ## 📊 Project Overview
 
-This project investigates short-horizon probability estimation and microstructure-aware execution in 5-minute binary markets- 
+This system trades 5-minute Bitcoin binary options on Polymarket using:
+- **Empirical probability surfaces** with walk-forward validation & regime stratification
+- **Kelly Criterion** (Monte Carlo uncertainty-adjusted) for position sizing
+- **Hold-to-expiry precision mode** — enter only when model is confident (prob ∉ [0.38, 0.62])
+- **Regime classification** (EWMA volatility + momentum)
+- **Coinbase price feed** — matches Polymarket settlement source for minimal basis risk
 
-- **Empirical probability surfaces** calibrated from 31 days of historical BTC data
-- **Kelly Criterion** for optimal position sizing
-- **Toxic flow detection** (Hawkes process, VPIN, price jumps)
-- **Asymmetric market making** with dynamic quote skewing
-- **Multi-exchange data fusion** (Polymarket + Binance)
-
-**The objective** is not to claim production-ready profitability, but to explore the interaction between empirical probability calibration, microstructure signals, and execution constraints under realistic assumptions.
+---
 
 ## 🎓 Academic Documentation
 
-This project includes comprehensive academic documentation suitable for university submission:
-
-📄 **[MATHEMATICAL_MODELS.md](MATHEMATICAL_MODELS.md)** - Complete mathematical and statistical framework:
+📄 **[MATHEMATICAL_MODELS](MATHEMATICAL_MODELS)** - Complete mathematical and statistical framework:
 - Empirical probability model derivation
 - Kelly Criterion for optimal betting
-- Hawkes self-exciting processes
+- Hawkes self-exciting processes for volume clustering
 - VPIN (Volume-Synchronized Probability of Informed Trading)
-- Kyle's Lambda for market impact
+- Kyle's Lambda for market impact estimation
 - Order flow analysis and asymmetric quoting
-- Full mathematical proofs and academic references
+- Market microstructure theory
+- Toxic flow detection algorithms
+- Full mathematical proofs with derivations
+- Academic references to seminal papers
+- Implementation details and complexity analysis
 
 ---
 
@@ -60,9 +60,9 @@ This project includes comprehensive academic documentation suitable for universi
 └─────────────────────────────────────────────────────────────┘
          ↓                        ↓
 ┌──────────────┐        ┌──────────────────┐
-│  Polymarket  │        │     Binance      │
+│  Polymarket  │        │    Coinbase      │
 │     CLOB     │        │   WebSocket      │
-│  Order Book  │        │   Price Feed     │
+│  Order Book  │        │  BTC-USD (live)  │
 └──────────────┘        └──────────────────┘
 ```
 
@@ -82,7 +82,12 @@ where:
 T = Time remaining in 5-minute window (seconds)
 ```
 
-**Training Data**: 45,000 1-minute observations → 9,000 simulated 5-minute windows
+**Training Data**: 45,000 1-minute observations (70% train / 30% OOS validation)
+
+**v6 Enhancements**:
+- Walk-forward: surface built from train only, OOS win rate on confident predictions (target ≥60%)
+- Regime-stratified: bins by (pct_diff, time_remaining, regime); regime used only if OOS-validated
+- Mud zone: no trade when prob ∈ [0.38, 0.62]
 
 ### 2. Kelly Criterion Position Sizing
 
@@ -137,29 +142,29 @@ skew = -sign(side) × pressure × 0.04  # Max 4% adjustment
 arbpoly/
 ├── README.md                          # This file
 ├── MATHEMATICAL_MODELS.md             # Academic documentation
-├── MEDALLION_MATH.md                  # Strategy mathematics
 ├── requirements.txt                   # Python dependencies
 │
-├── professional_strategy.py           # Main trading system (1,563 lines)
+├── live_test_2usd.py                 # Live trading system (v6) — RECOMMENDED
+│   ├── EmpiricalEngine               # Walk-forward, regime-stratified, calibration
+│   ├── EmpiricalCalibrator           # Brier score + reliability tracking
+│   ├── CalibrationCurve              # Favorite-longshot bias (γ)
+│   ├── RegimeClassifier              # EWMA volatility + momentum
+│   ├── MonteCarloKelly               # Uncertainty-adjusted sizing
+│   ├── EquitySimulator               # Ruin probability, max DD
+│   └── Coinbase WebSocket            # BTC-USD price feed
+│
+├── professional_strategy.py           # Paper trading (full research stack)
 │   ├── EmpiricalEngine               # Probability lookup
-│   ├── HawkesProcess                 # Volume clustering
-│   ├── VPIN                          # Toxic flow detection
-│   ├── KyleLambda                    # Market impact
-│   ├── OrderFlowPressure             # Directional flow
+│   ├── HawkesProcess, VPIN, KyleLambda
 │   ├── ToxicFlowDetector             # Unified detection
-│   ├── AdvancedSignalGenerator       # Signal evaluation
-│   └── ProfessionalExecutor          # Order execution
+│   └── AdvancedSignalGenerator       # Signal evaluation
 │
-├── btc_empirical_bot.py               # Empirical model bot (1,074 lines)
-│   ├── EmpiricalEngine               # Core probability engine
-│   ├── MultiExchangeFeed             # Binance + Polymarket feeds
-│   └── EmpiricalStrategy             # Trading strategy
-│
+├── btc_empirical_bot.py               # Empirical bot (MultiExchangeFeed)
 ├── empirical_model.py                 # Model calibration script
-│   └── Builds probability surfaces from btc_1m_candles.pkl
+├── backtest_300.py                    # Full-stack backtest engine
 │
 ├── btc_1m_candles.pkl                 # Training data (31 days, 45k obs)
-└── btc_hft.py                         # Original Black-Scholes bot (deprecated)
+└── logs/                              # Live session JSONL logs
 ```
 
 ---
@@ -209,24 +214,30 @@ MAX_REALISTIC_EDGE = 0.15     # Cap edge at 15%
 ### Run Paper Trading
 
 ```bash
-# Professional strategy (recommended)
+# Professional strategy (full research stack)
 python3 professional_strategy.py
 
 # Empirical strategy (simpler version)
 python3 btc_empirical_bot.py
+
+# Backtest (300-trade simulation)
+python3 backtest_300.py
 ```
 
-### Live Trading Setup
+### Live Trading
 
-⚠️ **NOT IMPLEMENTED** - This is currently paper trading only.
+```bash
+# Live trading (v6 — hold-to-expiry, Coinbase feed)
+# Requires: .env with POLY_PRIVATE_KEY, POLY_PROXY_ADDRESS
+python3 live_test_2usd.py
+```
 
-For live trading, you would need:
-1. Polymarket API key
-2. Wallet setup with private key
-3. EIP-712 order signing implementation
-4. Real order submission via CLOB API
+**Requirements**:
+1. `.env` file with `POLY_PRIVATE_KEY`, `POLY_PROXY_ADDRESS`
+2. USDC + POL on Polygon (for gas)
+3. Polymarket proxy wallet approved
 
-See `REALITY_CHECK.md` for details on live trading challenges.
+See `REALITY_CHECK.md` for live trading challenges.
 
 ---
 
@@ -234,7 +245,7 @@ See `REALITY_CHECK.md` for details on live trading challenges.
 
 ### ✅ Core Features
 - [x] Real-time multi-exchange data aggregation
-- [x] Empirical probability calibration from 31 days of BTC data
+- [x] Empirical probability calibration from 45 days of BTC data
 - [x] Kelly Criterion position sizing with confidence adjustments
 - [x] Hawkes process volume clustering detection
 - [x] VPIN toxic flow measurement
@@ -244,10 +255,16 @@ See `REALITY_CHECK.md` for details on live trading challenges.
 - [x] Realistic fill simulation (40% maker, 1.5% taker slippage)
 - [x] Order book reality checks (15s delay, $50 min volume, 15% edge cap)
 
+### v6 Live System Additions
+- [x] Live order execution (`live_test_2usd.py`)
+- [x] Regime classification (EWMA volatility + momentum)
+- [x] Walk-forward empirical validation (OOS win rate on confident preds)
+- [x] Empirical calibration tracking (Brier, reliability diagram)
+- [x] Coinbase price feed (matches Polymarket settlement)
+- [x] Hold-to-expiry precision mode (no mid-window sells)
+
 ### 🚧 Limitations
-- [ ] Live order execution (paper trading only)
 - [ ] Portfolio optimization across multiple markets
-- [ ] Regime detection (trending vs. ranging)
 - [ ] Deep learning for pattern recognition
 - [ ] Cross-market arbitrage
 
@@ -413,7 +430,7 @@ SOFTWARE.
 ## 📧 Contact
 
 - **GitHub**: [@HaloHunter480](https://github.com/HaloHunter480)
-- **Email**: harjot.quant@gmail.com
+- **Email**:harjot.quant@gmail.com
 
 For academic inquiries or collaboration opportunities, please reach out via email.
 
