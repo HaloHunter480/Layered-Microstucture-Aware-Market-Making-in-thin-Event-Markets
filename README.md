@@ -65,7 +65,8 @@ The system follows a modular pipeline for signal generation and execution:
 5. Risk Layer
    - Position limits
    - Drawdown protection
-   - Trade filtering in high-toxicity regimes```
+   - Trade filtering in high-toxicity regimes
+```
 
 ---
 
