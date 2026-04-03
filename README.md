@@ -40,37 +40,32 @@ This includes:
 ---
 
 ## 🏗️ Architecture
-The system combines signal generation (empirical + flow-based) with execution and risk layers to simulate realistic trading conditions.
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                  Professional Strategy                       │
-│  ┌────────────┐  ┌─────────────┐  ┌──────────────────┐     │
-│  │  Empirical │  │   Toxic     │  │  Order Flow      │     │
-│  │  Engine    │  │   Flow      │  │  Pressure        │     │
-│  │            │  │   Detector  │  │  Analysis        │     │
-│  └────────────┘  └─────────────┘  └──────────────────┘     │
-│         ↓               ↓                   ↓                │
-│  ┌──────────────────────────────────────────────────┐       │
-│  │         Signal Generator                          │       │
-│  │  • Reality checks (15s delay, $50 min volume)   │       │
-│  │  • Edge capping (15% max for Kelly sizing)      │       │
-│  │  • Confidence weighting                          │       │
-│  └──────────────────────────────────────────────────┘       │
-│         ↓                                                    │
-│  ┌──────────────────────────────────────────────────┐       │
-│  │         Professional Executor                     │       │
-│  │  • Maker/Taker decision (0.8% vs 4.5% edge)     │       │
-│  │  • Fill simulation (40% maker, 1.5% taker slip) │       │
-│  │  • Pre-emptive order cancellation                │       │
-│  └──────────────────────────────────────────────────┘       │
-└─────────────────────────────────────────────────────────────┘
-         ↓                        ↓
-┌──────────────┐        ┌──────────────────┐
-│  Polymarket  │        │    Coinbase      │
-│     CLOB     │        │   WebSocket      │
-│  Order Book  │        │  BTC-USD (live)  │
-└──────────────┘        └──────────────────┘
-```
+The system follows a modular pipeline for signal generation and execution:
+
+1. Data Layer
+   - Real-time order book and trade data
+   - External price feed (Coinbase)
+
+2. Signal Layer
+   - Empirical probability estimation
+   - Order flow signals (imbalance, momentum)
+   - Toxic flow detection (VPIN, Hawkes intensity)
+
+3. Decision Layer
+   - Alpha classification (passive / skewed / directional)
+   - Confidence filtering
+   - Position sizing (Kelly with constraints)
+
+4. Execution Layer
+   - Limit and market order placement
+   - Slippage and fill modeling
+   - Latency-aware execution
+
+5. Risk Layer
+   - Position limits
+   - Drawdown protection
+   - Trade filtering in high-toxicity regimes```
 
 ---
 
