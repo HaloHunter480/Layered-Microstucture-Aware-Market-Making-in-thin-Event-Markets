@@ -8,8 +8,6 @@ This project develops a microstructure-aware trading system for binary options m
 - Risk-adjusted position sizing (Kelly with uncertainty)
 - Realistic execution modeling
 
-Key Result:
-Paper trading simulation shows ~70% win rate across 28 trades with controlled risk exposure.
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Paper Trading](https://img.shields.io/badge/status-paper%20trading-green)](https://github.com)
