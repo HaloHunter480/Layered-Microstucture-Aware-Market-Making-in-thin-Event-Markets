@@ -26,21 +26,17 @@ This system trades 5-minute Bitcoin binary options on Polymarket using:
 ---
 
 ## 🎓 Academic Documentation
+Detailed mathematical framework and derivations are available in:
 
-📄 **[MATHEMATICAL_MODELS](MATHEMATICAL_MODELS)** - Complete mathematical and statistical framework:
-- Empirical probability model derivation
-- Kelly Criterion for optimal betting
-- Hawkes self-exciting processes for volume clustering
-- VPIN (Volume-Synchronized Probability of Informed Trading)
-- Kyle's Lambda for market impact estimation
-- Order flow analysis and asymmetric quoting
-- Market microstructure theory
-- Toxic flow detection algorithms
-- Full mathematical proofs with derivations
-- Academic references to seminal papers
-- Implementation details and complexity analysis
+**[MATHEMATICAL_MODELS](MATHEMATICAL_MODELS)** 
 
----
+This includes:
+- Empirical probability modeling
+- Kelly criterion and position sizing
+- Hawkes processes for trade clustering
+- VPIN for order flow toxicity
+- Market microstructure modeling
+- Execution and risk considerations---
 
 ## 🏗️ Architecture
 The system combines signal generation (empirical + flow-based) with execution and risk layers to simulate realistic trading conditions.
