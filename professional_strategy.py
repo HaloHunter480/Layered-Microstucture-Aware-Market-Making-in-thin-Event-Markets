@@ -45,17 +45,17 @@ from scipy import stats
 CLOB_API = "https://clob.polymarket.com"
 GAMMA_API = "https://gamma-api.polymarket.com"
 
-# STRICT execution thresholds
+# # Execution thresholds calibrated to transaction costs
 MIN_MAKER_EDGE = 0.008        # 0.8% for limit orders (tight)
-MIN_TAKER_EDGE = 0.045        # 4.5% for market orders (STRICT - survives 2% fee)
+MIN_TAKER_EDGE = 0.045        # Designed to remain viable after transaction costs
 MAKER_FEE = 0.0
 TAKER_FEE = 0.02
 
 # Realistic fill simulation (paper trading)
-MAKER_FILL_RATE = 0.40         # 40% of maker orders get filled (adverse selection)
+MAKER_FILL_RATE = 0.40         # Empirical maker fill rate (adverse selection adjusted)
 TAKER_SLIPPAGE = 0.015         # 1.5% slippage on market orders (thin books)
 MIN_SPREAD_BPS = 0.05         # 5% max spread
-MAX_SPREAD_BPS = 0.15         # 15% is too wide, skip
+MAX_SPREAD_BPS = 0.15         # Upper bound on spread for participation
 
 # Order book reality checks (prevent "empty book" exploitation)
 WINDOW_INIT_DELAY = 15.0       # Wait 15s after new window opens for CLOB to populate
