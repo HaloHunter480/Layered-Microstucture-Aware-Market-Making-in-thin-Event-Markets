@@ -68,7 +68,7 @@ The system follows a modular pipeline for signal generation and execution:
 
 ---
 
-## 🔬 Mathematical Models
+## Mathematical Models
 
 ### 1. Empirical Probability Surface
 
@@ -237,9 +237,11 @@ See `REALITY_CHECK.md` for live trading challenges.
 
 ---
 
-## 📈 Performance Analysis
+## Performance Analysis (Paper Simulation)
 
-### Paper Trading Results (75 minutes, 15 windows)
+### Short-duration paper simulation used to validate execution logic, latency sensitivity, and signal behavior under controlled conditions.
+
+### Results are not statistically significant and are not indicative of live performance.
 
 | Metric | Value |
 |--------|-------|
@@ -266,7 +268,7 @@ Based on market microstructure theory and adverse selection:
 
 | Metric | Paper | Expected Live |
 |--------|-------|---------------|
-| **Daily Return** | 200%+ | 0.5-2% |
+| **Daily Return** | Inflated | 0.5-2% |
 | **Win Rate** | 71% | 48-52% |
 | **Maker Fill Rate** | 40% | 20-40% |
 | **Max Drawdown** | 8% | 15-30% |
@@ -277,10 +279,23 @@ Based on market microstructure theory and adverse selection:
 - Fill degradation: Best prices get hit by HFT before us
 - Slippage: Real markets have wider spreads than paper
 - Latency: 50-200ms latency vs. instantaneous paper execution
+  
+## Latency Considerations
+
+System tested on AWS (eu-west-1, Ireland) with ~120–140 ms latency.
+
+Key observations:
+- Strategy performance is highly sensitive to latency
+- Maker orders are vulnerable to adverse selection at higher latency
+- Faster participants (HFTs) consistently capture top-of-book liquidity
+
+Implication:
+- Sub-70 ms latency likely required for consistent edge
+- Higher latency environments degrade execution quality significantly
 
 ---
 
-## 🔬 Research & References
+## Research & References
 
 ### Academic Papers
 
@@ -394,7 +409,7 @@ SOFTWARE.
 
 ---
 
-## 📧 Contact
+## Contact
 
 - **GitHub**: [@HaloHunter480](https://github.com/HaloHunter480)
 - **Email**:harjot.quant@gmail.com
