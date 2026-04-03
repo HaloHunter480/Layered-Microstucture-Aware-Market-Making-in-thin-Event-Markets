@@ -145,39 +145,6 @@ skew = -sign(side) × pressure × 0.04  # Max 4% adjustment
 
 ---
 
-## 📁 Project Structure
-
-```
-arbpoly/
-├── README.md                          # This file
-├── MATHEMATICAL_MODELS.md             # Academic documentation
-├── requirements.txt                   # Python dependencies
-│
-├── live_test_2usd.py                 # Live trading system (v6) — RECOMMENDED
-│   ├── EmpiricalEngine               # Walk-forward, regime-stratified, calibration
-│   ├── EmpiricalCalibrator           # Brier score + reliability tracking
-│   ├── CalibrationCurve              # Favorite-longshot bias (γ)
-│   ├── RegimeClassifier              # EWMA volatility + momentum
-│   ├── MonteCarloKelly               # Uncertainty-adjusted sizing
-│   ├── EquitySimulator               # Ruin probability, max DD
-│   └── Coinbase WebSocket            # BTC-USD price feed
-│
-├── professional_strategy.py           # Paper trading (full research stack)
-│   ├── EmpiricalEngine               # Probability lookup
-│   ├── HawkesProcess, VPIN, KyleLambda
-│   ├── ToxicFlowDetector             # Unified detection
-│   └── AdvancedSignalGenerator       # Signal evaluation
-│
-├── btc_empirical_bot.py               # Empirical bot (MultiExchangeFeed)
-├── empirical_model.py                 # Model calibration script
-├── backtest_300.py                    # Full-stack backtest engine
-│
-├── btc_1m_candles.pkl                 # Training data (31 days, 45k obs)
-└── logs/                              # Live session JSONL logs
-```
-
----
-
 ## 🚀 Quick Start
 
 ### Prerequisites
