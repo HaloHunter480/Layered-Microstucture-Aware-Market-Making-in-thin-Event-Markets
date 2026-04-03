@@ -28,7 +28,7 @@ This system trades 5-minute Bitcoin binary options on Polymarket using:
 ## 🎓 Academic Documentation
 Detailed mathematical framework and derivations are available in:
 
-**[MATHEMATICAL_MODELS](MATHEMATICAL_MODELS)** 
+**[MATHEMATICAL_MODELS.md](MATHEMATICAL_MODELS.md)** 
 
 This includes:
 - Empirical probability modeling
