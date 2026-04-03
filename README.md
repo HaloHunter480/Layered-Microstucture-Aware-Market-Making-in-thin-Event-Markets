@@ -12,7 +12,7 @@ This project develops a microstructure-aware trading system for binary options m
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Paper Trading](https://img.shields.io/badge/status-paper%20trading-green)](https://github.com)
 
-## 📊 Project Overview
+## Project Overview
 
 This system trades 5-minute Bitcoin binary options on Polymarket using:
 - **Empirical probability surfaces** with walk-forward validation & regime stratification
@@ -23,7 +23,7 @@ This system trades 5-minute Bitcoin binary options on Polymarket using:
 
 ---
 
-## 🎓 Academic Documentation
+## Academic Documentation
 Detailed mathematical framework and derivations are available in:
 
 **[MATHEMATICAL_MODELS.md](MATHEMATICAL_MODELS.md)** 
@@ -136,7 +136,7 @@ skew = -sign(side) × pressure × 0.04  # Max 4% adjustment
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -208,9 +208,9 @@ See `REALITY_CHECK.md` for live trading challenges.
 
 ---
 
-## 📊 Features
+## Features
 
-### ✅ Core Features
+### Core Features
 - [x] Real-time multi-exchange data aggregation
 - [x] Empirical probability calibration from 45 days of BTC data
 - [x] Kelly Criterion position sizing with confidence adjustments
@@ -230,7 +230,7 @@ See `REALITY_CHECK.md` for live trading challenges.
 - [x] Coinbase price feed (matches Polymarket settlement)
 - [x] Hold-to-expiry precision mode (no mid-window sells)
 
-### 🚧 Limitations
+### Limitations
 - [ ] Portfolio optimization across multiple markets
 - [ ] Deep learning for pattern recognition
 - [ ] Cross-market arbitrage
@@ -254,11 +254,11 @@ See `REALITY_CHECK.md` for live trading challenges.
 
 ### Reality Check Effectiveness
 
-1. **Window Initialization Delay**: ✅ No trades in first 15s of new windows
-2. **Ghost Town Filter**: ✅ Blocked thin order books
-3. **Edge Capping**: ✅ Limited position sizing on anomalous edges (prevented exponential growth)
-4. **Toxic Flow Detection**: ✅ 2,700+ toxic events detected, orders cancelled appropriately
-5. **Fill Simulation**: ✅ Realistic maker fill rates applied
+1. **Window Initialization Delay**: No trades in first 15s of new windows
+2. **Ghost Town Filter**: Blocked thin order books
+3. **Edge Capping**: Limited position sizing on anomalous edges (prevented exponential growth)
+4. **Toxic Flow Detection**: 2,700+ toxic events detected, orders cancelled appropriately
+5. **Fill Simulation**: Realistic maker fill rates applied
 
 ### Expected Live Performance
 
@@ -306,7 +306,7 @@ Based on market microstructure theory and adverse selection:
 
 ---
 
-## ⚠️ Risk Disclaimer
+## Risk Disclaimer
 
 **THIS SOFTWARE IS FOR EDUCATIONAL AND RESEARCH PURPOSES ONLY.**
 
@@ -324,7 +324,7 @@ Based on market microstructure theory and adverse selection:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Areas for improvement:
 
@@ -403,7 +403,7 @@ For academic inquiries or collaboration opportunities, please reach out via emai
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Polymarket** for providing prediction market infrastructure
 - **Binance** for real-time BTC price data
@@ -412,7 +412,7 @@ For academic inquiries or collaboration opportunities, please reach out via emai
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [Polymarket API Documentation](https://docs.polymarket.com/)
 - [Binance API Documentation](https://binance-docs.github.io/apidocs/)
