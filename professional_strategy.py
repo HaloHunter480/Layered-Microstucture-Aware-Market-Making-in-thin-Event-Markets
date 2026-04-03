@@ -1,22 +1,20 @@
 """
-Professional Market Making System for Polymarket BTC Binary Options
+Layered Microstructure-Aware Market Making In Thin Event Markets
 ====================================================================
 
-Critical Fixes Implemented:
-1. TAKER FEE SURVIVAL: Only market orders when edge > 4.5%
-2. TOXIC FLOW DETECTION: Cancel all orders on volume spikes or price jumps
-3. DYNAMIC ASYMMETRIC QUOTES: Skew based on order flow pressure
-4. ADVANCED MODELS: Hawkes process, VPIN, Kyle's lambda, lead-lag
+This project implements a research-oriented trading framework for binary event markets,
+focusing on execution realism, adverse selection, and probabilistic decision-making.
 
-Order Book Reality Checks (Paper Trading):
-- Window initialization delay: 15s (wait for CLOB to populate)
-- Ghost town filter: Min $50 at top-of-book (reject empty markets)
-- Maximum edge cap: 15% for Kelly sizing (prevent data anomaly exploitation)
+Key components:
+- Empirical probability estimation from historical data
+- Calibration using out-of-sample likelihood optimization
+- Order flow modeling (Hawkes process, VPIN, OFI, Kyle’s Lambda)
+- Regime detection using volatility and directional signals
+- Monte Carlo-based position sizing under uncertainty
+- Forward equity simulation for risk-of-ruin estimation
 
-Realistic Fill Simulation:
-- Maker orders: 40% fill rate (60% expire due to adverse selection)
-- Taker orders: 1.5% slippage on thin books
-- Total taker cost: 2% fee + 1.5% slippage = 3.5%
+The objective is to study how market microstructure influences trading decisions
+under uncertainty, rather than to optimize short-term profitability.
 
 Philosophy:
 - Assume the market is trying to pick us off
@@ -24,12 +22,6 @@ Philosophy:
 - Only take liquidity when edge is overwhelming
 - Cancel and reassess constantly
 
-Expected Performance (REALISTIC, with all protections):
-- Win rate: 48-52% (adverse selection adjusted)
-- Avg edge: 1-2% (after all costs and reality checks)
-- Daily return: 0.2-1.0%
-- Sharpe: 0.8-1.5
-- Max drawdown: 15-30%
 """
 
 import asyncio
