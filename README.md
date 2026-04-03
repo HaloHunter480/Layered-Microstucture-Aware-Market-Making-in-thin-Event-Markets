@@ -241,7 +241,7 @@ See `REALITY_CHECK.md` for live trading challenges.
 
 ### Short-duration paper simulation used to validate execution logic, latency sensitivity, and signal behavior under controlled conditions.
 
-### Results are not statistically significant and are not indicative of live performance.
+Results are not statistically significant and are not indicative of live performance.
 
 Paper Trading Results:
 
@@ -250,9 +250,9 @@ Paper Trading Results:
 | **Starting Bankroll** | $500 |
 | **Ending Bankroll** | $1,238 |
 | **Total Return** | +148% |
-| **Total Trades** | 280 |
-| **Win Rate** | 71.4% (200W / 80L) |
-| **Maker/Taker Split** | 110 maker / 170 taker |
+| **Total Trades** | 28 |
+| **Win Rate** | 71.4% (20W / 8L) |
+| **Maker/Taker Split** | 11 maker / 17 taker |
 | **Maker Fill Rate** | ~40% (as simulated) |
 | **Avg Trade Size** | $4-30 (Kelly-weighted) |
 
