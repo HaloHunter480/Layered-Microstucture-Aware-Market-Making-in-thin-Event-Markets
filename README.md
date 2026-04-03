@@ -36,7 +36,8 @@ This includes:
 - Hawkes processes for trade clustering
 - VPIN for order flow toxicity
 - Market microstructure modeling
-- Execution and risk considerations---
+- Execution and risk considerations
+---
 
 ## 🏗️ Architecture
 The system combines signal generation (empirical + flow-based) with execution and risk layers to simulate realistic trading conditions.
