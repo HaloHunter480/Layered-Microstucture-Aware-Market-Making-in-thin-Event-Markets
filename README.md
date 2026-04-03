@@ -243,6 +243,8 @@ See `REALITY_CHECK.md` for live trading challenges.
 
 ### Results are not statistically significant and are not indicative of live performance.
 
+Paper Trading Results:
+
 | Metric | Value |
 |--------|-------|
 | **Starting Bankroll** | $500 |
