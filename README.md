@@ -1,4 +1,4 @@
-**Emperical Microstucture in Binary Markets**
+**Microstucture Aware Market Making in Thin Event Markets**
 ## Summary
 
 This project develops a microstructure-aware trading system for binary options markets (Polymarket), focusing on:
