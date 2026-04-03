@@ -2,7 +2,6 @@
 ## A Statistical Arbitrage System for Polymarket Bitcoin Markets
 
 **Author**: Harjot  
-**Institution**: French University Submission  
 **Date**: February 2026  
 **Field**: Quantitative Finance, Market Microstructure, Statistical Arbitrage
 
