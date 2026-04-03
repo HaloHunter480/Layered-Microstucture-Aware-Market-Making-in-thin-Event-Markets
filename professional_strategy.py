@@ -16,13 +16,11 @@ Key components:
 The objective is to study how market microstructure influences trading decisions
 under uncertainty, rather than to optimize short-term profitability.
 
-Philosophy:
-- Assume the market is trying to pick us off
-- Never give free options
-- Only take liquidity when edge is overwhelming
-- Cancel and reassess constantly
-
-"""
+Design Principles:
+- Explicit modeling of adverse selection and execution risk
+- Conservative participation under uncertainty
+- Continuous re-evaluation of market conditions
+- Avoidance of structurally unfavorable trades"""
 
 import asyncio
 import json
