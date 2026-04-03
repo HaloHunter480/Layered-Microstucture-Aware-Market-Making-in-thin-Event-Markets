@@ -43,7 +43,7 @@ This system trades 5-minute Bitcoin binary options on Polymarket using:
 ---
 
 ## 🏗️ Architecture
-
+The system combines signal generation (empirical + flow-based) with execution and risk layers to simulate realistic trading conditions.
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                  Professional Strategy                       │
@@ -312,7 +312,7 @@ Based on market microstructure theory and adverse selection:
 | **Win Rate** | 71% | 48-52% |
 | **Maker Fill Rate** | 40% | 20-40% |
 | **Max Drawdown** | 8% | 15-30% |
-| **Sharpe Ratio** | 2.5 | 0.8-1.5 |
+| **Sharpe Ratio** | 2.5 | 0.1-0.7 |
 
 **Why the gap?**
 - Adverse selection: Informed traders pick off maker orders
