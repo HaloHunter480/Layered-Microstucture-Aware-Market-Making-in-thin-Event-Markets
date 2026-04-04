@@ -1,7 +1,7 @@
 **Microstucture Aware Market Making in Thin Event Markets**
 ## Summary
 
-This project develops a microstructure-aware trading system for binary options markets (Polymarket), focusing on:
+This system combines microstructure-aware market making with selective directional execution when model confidence is high, focusing on:
 
 - Empirical probability estimation (no Black-Scholes assumptions)
 - Order flow toxicity detection (VPIN, Hawkes processes)
@@ -14,7 +14,7 @@ This project develops a microstructure-aware trading system for binary options m
 
 ## Project Overview
 
-This system trades 5-minute Bitcoin binary options on Polymarket using:
+This system trades 5-minute Bitcoin binary options using:
 - **Empirical probability surfaces** with walk-forward validation & regime stratification
 - **Kelly Criterion** (Monte Carlo uncertainty-adjusted) for position sizing
 - **Hold-to-expiry precision mode** — enter only when model is confident (prob ∉ [0.38, 0.62])
