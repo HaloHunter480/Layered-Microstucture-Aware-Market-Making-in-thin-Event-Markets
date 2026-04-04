@@ -1,7 +1,7 @@
 **Microstucture Aware Market Making in Thin Event Markets**
 ## Summary
 
-This system combines microstructure-aware market making with selective directional execution when model confidence is high, focusing on:
+This system combines microstructure-aware market making with selective directional execution when calibrated probability deviates significantly from market price, focusing on:
 
 - Empirical probability estimation (no Black-Scholes assumptions)
 - Order flow toxicity detection (VPIN, Hawkes processes)
