@@ -24,7 +24,7 @@ This document presents a comprehensive statistical arbitrage system for trading 
 1. Uncertainty-Adjusted Kelly with Monte Carlo Beta posterior sampling
 2. Calibration Curve with online MLE (favorite-longshot bias correction)
 3. Monte Carlo Equity Simulation for session-level ruin probability
-4. ~~Order Flow Imbalance (OFI)~~ — *disabled* (not predictive on OOS)
+4. Order Flow Imbalance (OFI) — evaluated but excluded due to lack of stable out-of-sample predictive power across regimes
 5. Regime Classification via EWMA volatility and momentum (replaces Hurst)
 6. Full outcome distribution tracking (variance, skewness, CI)
 
