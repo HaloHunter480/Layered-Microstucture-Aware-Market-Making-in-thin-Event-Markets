@@ -3,7 +3,7 @@
 
 This system combines microstructure-aware market making with selective directional execution when calibrated probability deviates significantly from market price, focusing on:
 
-- Empirical probability estimation (no Black-Scholes assumptions)
+- Empirical probability estimation (data driven, non-parametric)
 - Order flow toxicity detection (VPIN, Hawkes processes)
 - Risk-adjusted position sizing (Kelly with uncertainty)
 - Realistic execution modeling
