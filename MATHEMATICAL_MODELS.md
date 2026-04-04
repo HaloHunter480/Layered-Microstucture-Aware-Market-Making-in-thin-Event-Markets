@@ -11,6 +11,8 @@
 
 This document presents a comprehensive statistical arbitrage system for trading binary options on Bitcoin price movements in the Polymarket prediction market. The system employs advanced mathematical models from financial econometrics, market microstructure theory, and information theory to identify and exploit pricing inefficiencies while managing toxic flow and adverse selection.
 
+System evolved through iterative development from initial paper trading (v4) to validated live-ready framework (v6).
+
 **Key Components (v4 — Paper Trading)**:
 1. Empirical probability surface calibration
 2. Kelly Criterion for optimal position sizing
